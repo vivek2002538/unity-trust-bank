@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Transaction History</h2>
+    <table border="1">
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for t in transactions %}
+        <tr>
+            <td>{{t.transaction_type}}</td>
+            <td>{{t.amount}}</td>
+            <td>{{t.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

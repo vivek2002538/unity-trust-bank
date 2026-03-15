@@ -1,0 +1,42 @@
+body{
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Main box */
+.register-container{
+    width:420px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Form inputs */
+.register-container input,
+.register-container select{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+/* Register button */
+.register-container button{
+    width:100%;
+    padding:12px;
+    background:#4facfe;
+    border:none;
+    border-radius:6px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* Hover */
+.register-container button:hover{
+    background:#007bff;
+}

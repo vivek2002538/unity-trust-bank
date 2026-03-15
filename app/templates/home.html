@@ -18,12 +18,6 @@
 <h1 class="title">BANK MANAGEMENT SYSTEM</h1>
 
 <div class="dashboard">
-
-<a href="{% url 'register' %}" class="card">
-<img src="{% static 'images/Register.jpeg' %}">
-<p>Register</p>
-</a>
-
 <a href="{% url 'pin' %}" class="card">
 <img src="{% static 'images/PinGeneration.jpeg' %}">
 <p>Generate PIN</p>
@@ -47,6 +41,11 @@
 <a href="{% url 'acc_transfer' %}" class="card">
 <img src="{% static 'images/accTransfer.png' %}">
 <p>Transfer</p>
+</a>
+
+<a href="{%url 'history' %}" class="card">
+    <img src="{% static 'images/history.png' %}" alt="">
+    <p>Transaction History</p>
 </a>
 
 </div>

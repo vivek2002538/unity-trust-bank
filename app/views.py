@@ -1,9 +1,31 @@
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from . forms import Registration_form ,pin_validation
 from . models import account
+from . models import Transaction
 from .encrypt import hide
 
 # Create your views here.
+def user_login(request):
+    msg=""
+    if request.method=="POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+        else:
+            msg="Invalid username or password"
+    return render(request,"login.html",{"msg":msg})   
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')   
+
+@login_required
 def index(request):
     return render(request,'home.html')
 
@@ -15,10 +37,11 @@ def register(request):
         if form.is_valid:
             form.save()
             data=account.objects.get(phone=request.POST.get('phone'))
+            User.objects.create_user(username=data.acc_num,password=request.POST.get('password'))  
             if data:
-                msg=f'your account number is {data.acc_num}'
-            print('added')    
+                msg=f'your account number is {data.acc_num}' 
     return render(request,'register.html',{'form':form,'msg':msg})
+
 
 def pin(request):
     msg=''
@@ -73,7 +96,8 @@ def deposit(request):
                 if amt>100:
                     data.bal+=amt
                     data.save()
-                    return redirect('home')
+                    Transaction.objects.create(acc=data,transaction_type="Deposit", amount=amt)
+                    msg="amount deposited successfully"
                 else:
                     msg='amount is too low to deposit' 
             else:
@@ -96,6 +120,7 @@ def withdraw(request):
                 if amt<=data.bal:
                     data.bal-=amt
                     data.save()
+                    Transaction.objects.create(acc=data,transaction_type='withdrawal',amount=amt)
                     msg="amount withdrawn successfully"
                 else:
                     msg='insufficient funds' 
@@ -134,3 +159,9 @@ def acc_transfer(request):
         'msg':msg
     }            
     return render(request,'acc_transfer.html',context)
+
+def transaction_history(request):
+    acc=int(request.user.username)
+    transactions=Transaction.objects.filter(acc_id=acc).order_by('-date')
+    print(request.user.username)
+    return render(request,'transaction_history.html',{'transactions':transactions})
