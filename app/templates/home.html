@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bank Management System</title>
+<title>Welcome to Unity Trust Bank</title>
 
 <link rel="stylesheet" href="{% static 'style.css' %}">
 
@@ -15,7 +15,8 @@
 
 <body>
 
-<h1 class="title">BANK MANAGEMENT SYSTEM</h1>
+<h1 class="title">Welcome to Unity Trust Bank</h1>
+<a href="{% url 'logout' %}" class="logout-btn">Logout</a>
 
 <div class="dashboard">
 <a href="{% url 'pin' %}" class="card">
@@ -44,8 +45,8 @@
 </a>
 
 <a href="{%url 'history' %}" class="card">
-    <img src="{% static 'images/history.png' %}" alt="">
-    <p>Transaction History</p>
+<img src="{% static 'images/history.png' %}" alt="">
+<p>Transaction History</p>
 </a>
 
 </div>

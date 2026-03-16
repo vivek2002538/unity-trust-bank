@@ -7,7 +7,7 @@ class gender(models.Model):
         return self.name
 
 class account(models.Model):
-    acc_num=models.AutoField(primary_key=True,default=1234567890)
+    acc_num=models.AutoField(primary_key=True)
     name=models.CharField(max_length=100)
     dob=models.DateField()
     aadhar=models.PositiveBigIntegerField(unique=True)

@@ -1,25 +1,54 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Transaction History</title>
+
+<link rel="stylesheet" href="{% static 'transaction_history.css' %}">
+
 </head>
+
 <body>
-    <h2>Transaction History</h2>
-    <table border="1">
-        <tr>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </tr>
-        {% for t in transactions %}
-        <tr>
-            <td>{{t.transaction_type}}</td>
-            <td>{{t.amount}}</td>
-            <td>{{t.date}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+
+<div class="container">
+
+<a href="{% url 'home'%}" class="home-btn">🏠 Home</a>
+
+<h2>Transaction History</h2>
+
+<table class="transaction-table">
+
+<thead>
+<tr>
+<th>Type</th>
+<th>Amount</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for t in transactions %}
+
+<tr>
+<td>{{t.transaction_type}}</td>
+<td>₹ {{t.amount}}</td>
+<td>{{t.date}}</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
 </body>
+
 </html>

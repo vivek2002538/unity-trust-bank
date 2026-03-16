@@ -139,3 +139,17 @@ img:hover{
     padding: 10px;
     border: black 1px solid;
 }
+.logout-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: lab(59.07% 66.79 39.59);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.logout-btn:hover{
+    background-color:rgb(234, 16, 16);
+}

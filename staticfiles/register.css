@@ -1,9 +1,9 @@
 body{
     margin:0;
     padding:0;
-    font-family:Arial;
-    
+    font-family:Arial, Helvetica, sans-serif;
     height:100vh;
+    
     display:flex;
     justify-content:center;
     align-items:center;
@@ -14,50 +14,54 @@ body{
     .container{
     
     background:white;
-    
-    padding:40px;
-    
-    width:380px;
+    padding:35px;
+    width:350px;
     
     border-radius:10px;
     
     box-shadow:0 10px 25px rgba(0,0,0,0.3);
     
+    text-align:center;
+    
     }
     
     h2{
-    
-    text-align:center;
-    
     margin-bottom:20px;
-    
-    }
-    
-    form p{
-    
-    margin-bottom:15px;
-    
+    color:#333;
     }
     
     label{
     
     display:block;
+    text-align:left;
     
-    margin-bottom:5px;
-    
+    margin-top:15px;
     font-weight:bold;
+    
+    color:#444;
     
     }
     
-    input,select{
+    input{
     
     width:100%;
-    
     padding:10px;
+    
+    margin-top:5px;
     
     border:1px solid #ccc;
     
     border-radius:5px;
+    
+    font-size:14px;
+    
+    }
+    
+    input:focus{
+    
+    outline:none;
+    
+    border-color:#3a7bd5;
     
     }
     
@@ -67,17 +71,17 @@ body{
     
     padding:10px;
     
-    background:#5dade2;
+    margin-top:20px;
     
     border:none;
     
     border-radius:5px;
     
+    background:#5dade2;
+    
     color:white;
     
     font-size:16px;
-    
-    margin-top:10px;
     
     cursor:pointer;
     
@@ -91,8 +95,22 @@ body{
     
     .login-link{
     
-    text-align:center;
+    margin-top:15px;
     
-    margin-top:10px;
+    font-size:14px;
+    
+    }
+    
+    .login-link a{
+    
+    text-decoration:none;
+    
+    color:#3a7bd5;
+    
+    }
+    
+    .login-link a:hover{
+    
+    text-decoration:underline;
     
     }

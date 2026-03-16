@@ -25,7 +25,7 @@ def user_logout(request):
     logout(request)
     return redirect('login')   
 
-@login_required
+@login_required(login_url='login')
 def index(request):
     return render(request,'home.html')
 
@@ -34,7 +34,7 @@ def register(request):
     form=Registration_form()
     if request.method=="POST":
         form=Registration_form(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             data=account.objects.get(phone=request.POST.get('phone'))
             User.objects.create_user(username=data.acc_num,password=request.POST.get('password'))  
@@ -43,6 +43,7 @@ def register(request):
     return render(request,'register.html',{'form':form,'msg':msg})
 
 
+@login_required(login_url='login')
 def pin(request):
     msg=''
     form=pin_validation()
@@ -68,6 +69,7 @@ def pin(request):
     }                
     return render(request,'pin.html',context)
 
+@login_required(login_url='login')
 def checkBal(request):
     msg=''
     if request.method=="POST":
@@ -84,6 +86,7 @@ def checkBal(request):
     }                
     return render(request,'CheckBalance.html',context)
 
+@login_required(login_url='login')
 def deposit(request):
     msg=''
     if request.method=='POST':
@@ -108,6 +111,7 @@ def deposit(request):
     return render(request,'transaction.html',context)
 
 
+@login_required(login_url='login')
 def withdraw(request):
     msg=''
     if request.method=='POST':
@@ -132,6 +136,7 @@ def withdraw(request):
     }                        
     return render(request,'transaction.html',context)
 
+@login_required(login_url='login')
 def acc_transfer(request):
     msg=''
     if request.method=="POST":
@@ -160,6 +165,7 @@ def acc_transfer(request):
     }            
     return render(request,'acc_transfer.html',context)
 
+@login_required(login_url='login')
 def transaction_history(request):
     acc=int(request.user.username)
     transactions=Transaction.objects.filter(acc_id=acc).order_by('-date')
