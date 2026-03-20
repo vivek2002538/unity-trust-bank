@@ -13,6 +13,7 @@ class account(models.Model):
     gender=models.CharField(max_length=10,choices=[('Male','Male'),('Female','Female'),('Other','Other')])
     pin=models.CharField(max_length=64)
     bal=models.IntegerField(default=1000)
+    password=models.CharField(max_length=128)
 
 class Transaction(models.Model):
     acc=models.ForeignKey(account,on_delete=models.CASCADE)
