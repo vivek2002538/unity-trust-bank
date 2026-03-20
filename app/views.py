@@ -21,6 +21,8 @@ def user_login(request):
             msg="Invalid username or password"
     return render(request,"login.html",{"msg":msg})   
 
+
+@login_required(login_url='login')
 def user_logout(request):
     logout(request)
     return redirect('login')   

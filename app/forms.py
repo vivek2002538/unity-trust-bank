@@ -11,5 +11,3 @@ class pin_validation(forms.Form):
     aadhar=forms.IntegerField()
     pin=forms.IntegerField()
     c_pin=forms.IntegerField()
-
-    
