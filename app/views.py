@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from . forms import Registration_form ,pin_validation
@@ -37,7 +38,9 @@ def register(request):
     if request.method=="POST":
         form=Registration_form(request.POST)
         if form.is_valid():
-            form.save()
+            user=form.save(commit=False)
+            user.password=make_password(request.POST.get('password'))
+            user.save()
             data=account.objects.get(phone=request.POST.get('phone'))
             User.objects.create_user(username=data.acc_num,password=request.POST.get('password'))  
             if data:
