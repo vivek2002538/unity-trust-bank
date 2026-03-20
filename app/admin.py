@@ -1,6 +1,6 @@
 from django.contrib import admin
-from . models import gender
+from . models import  account
 
-admin.site.register(gender)
+admin.site.register(account)
 
 # Register your models here.
