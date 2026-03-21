@@ -10,7 +10,7 @@ class Registration_form(forms.ModelForm):
     gender=forms.ChoiceField(choices=GENDER_CHOICES)
     class Meta:
         model=account
-        fields=['name','dob','aadhar','pan','phone','gender','password']
+        fields=['name','dob','aadhar','pan','phone','gender']
 
 class pin_validation(forms.Form):
     account_num=forms.IntegerField()

@@ -37,12 +37,16 @@ def register(request):
     form=Registration_form()
     if request.method=="POST":
         form=Registration_form(request.POST)
-        if form.is_valid():
+        password=request.POST.get('password')
+        confirm_password=request.POST.get('confirm_password')
+        if password!=confirm_password:
+            msg="password mismatch"
+        elif form.is_valid():
             user=form.save(commit=False)
-            user.password=make_password(request.POST.get('password'))
+            user.password=make_password(password)
             user.save()
             data=account.objects.get(phone=request.POST.get('phone'))
-            User.objects.create_user(username=data.acc_num,password=request.POST.get('password'))  
+            User.objects.create_user(username=data.acc_num,password=password)  
             if data:
                 msg=f'your account number is {data.acc_num}' 
     return render(request,'register.html',{'form':form,'msg':msg})
