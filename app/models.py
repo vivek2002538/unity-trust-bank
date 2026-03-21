@@ -4,12 +4,12 @@ from django.db import models
 
 
 class account(models.Model):
-    acc_num=models.AutoField(primary_key=True,default=1234567890)
+    acc_num=models.BigIntegerField(primary_key=True)
     name=models.CharField(max_length=100)
     dob=models.DateField()
     aadhar=models.PositiveBigIntegerField(unique=True)
     pan=models.CharField(max_length=10,unique=True)
-    phone=models.PositiveBigIntegerField(unique=10)
+    phone=models.PositiveBigIntegerField(unique=True)
     gender=models.CharField(max_length=10,choices=[('Male','Male'),('Female','Female'),('Other','Other')])
     pin=models.CharField(max_length=64)
     bal=models.IntegerField(default=1000)

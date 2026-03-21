@@ -41,12 +41,18 @@ def register(request):
         if password!=confirm_password:
             msg="password mismatch"
         elif form.is_valid():
+            last_account=account.objects.order_by('-acc_num').first()
+            if last_account:
+                new_acc_num=last_account.acc_num+1
+            else:
+                new_acc_num=1234567890
             user=form.save(commit=False)
+            user.acc_num=new_acc_num
             user.password=make_password(password)
             user.save()
             data=account.objects.get(phone=request.POST.get('phone'))
-            User.objects.create_user(username=data.acc_num,password=password)  
             if data:
+                User.objects.create_user(username=str(data.acc_num),password=password)  
                 msg=f'your account number is {data.acc_num}' 
     return render(request,'register.html',{'form':form,'msg':msg})
 
